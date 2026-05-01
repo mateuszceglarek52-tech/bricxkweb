@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+\<!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BR SHOOTERS | Official</title>
+    <title>BR SHOOTERS | BRICXK</title>
 
     <style>
         body {
@@ -96,16 +96,29 @@
             flex-direction: column;
         }
 
+        .header-box {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 2px solid #ffffff;
+            padding-bottom: 15px;
+        }
+
         .team-name {
             color: #ffffff;
             font-size: 22px;
             font-weight: 900;
-            margin-bottom: 50px;
             letter-spacing: 3px;
-            text-align: center;
             text-transform: uppercase;
-            border-bottom: 2px solid #ffffff;
-            padding-bottom: 10px;
+            margin: 0;
+        }
+
+        .user-name {
+            color: #888;
+            font-size: 14px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 5px;
+            display: block;
         }
 
         .menu { flex-grow: 1; }
@@ -151,7 +164,7 @@
         .section {
             display: none;
             width: 100%;
-            max-width: 1000px; /* Szersza sekcja */
+            max-width: 1000px;
             animation: fadeIn 0.6s ease forwards;
         }
 
@@ -170,20 +183,15 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        /* UKŁAD POZIOMY DLA O NAS */
         .about-layout {
             display: flex;
             align-items: center;
             gap: 40px;
         }
 
-        .about-text {
-            flex: 1;
-        }
+        .about-text { flex: 1; }
 
-        .about-image-container {
-            flex: 1;
-        }
+        .about-image-container { flex: 1; }
 
         .about-image {
             width: 100%;
@@ -204,7 +212,6 @@
 
         p { color: #cccccc; line-height: 1.8; font-size: 16px; }
 
-        /* Pozostałe sekcje */
         .setup-item {
             display: flex;
             justify-content: space-between;
@@ -230,9 +237,10 @@
 
         a:hover { box-shadow: 0 5px 15px rgba(255,255,255,0.3); }
 
-        /* Responsywność - na telefonach zdjęcie wróci pod tekst */
         @media (max-width: 850px) {
             .about-layout { flex-direction: column; text-align: center; }
+            #main { flex-direction: column; overflow-y: auto; }
+            .sidebar { width: 100%; height: auto; padding: 20px; border-right: none; border-bottom: 1px solid #333; }
             .content-area { padding: 20px; }
         }
     </style>
@@ -243,12 +251,16 @@
 <div id="intro" onclick="start()">
     <img src="BRRR.jpg" alt="Logo" class="intro-logo">
     <div class="bar"><div class="bar-fill"></div></div>
-    <p>Kliknij, aby wejść</p>
+    <p>Kliknij, aby wejść | BRICXK</p>
 </div>
 
 <div id="main">
     <div class="sidebar">
-        <div class="team-name">BR SHOOTERS</div>
+        <div class="header-box">
+            <h1 class="team-name">BR SHOOTERS</h1>
+            <span class="user-name">BRICXK</span>
+        </div>
+        
         <div class="menu">
             <button onclick="show(this, 'team')" class="active">O nas</button>
             <button onclick="show(this, 'clips')">Media</button>
@@ -261,9 +273,9 @@
             <div class="card">
                 <div class="about-layout">
                     <div class="about-text">
-                        <h2>O NAS</h2>
-                        <p>Ekipa <strong>BR SHOOTERS</strong> to czysta precyzja i profesjonalizm. Jesteśmy zespołem zgranym pod kątem taktycznym, gdzie każdy strzał ma znaczenie.</p>
-                        <p>Naszym celem jest stały progres i dominacja na serwerze. Razem tworzymy nową historię w świecie gamingu.</p>
+                        <h2>PROFIL EKIPY</h2>
+                        <p><strong>BR SHOOTERS</strong> to projekt prowadzony przez <strong>BRICXK</strong>. Skupiamy się na najwyższym poziomie rywalizacji i taktycznym podejściu do gry.</p>
+                        <p>Nasza filozofia to precyzja i wzajemne zaufanie na serwerze. To tutaj profesjonalizm spotyka się z pasją do gamingu.</p>
                     </div>
                     <div class="about-image-container">
                         <img src="G4_2_PL.png" alt="O nas zdjęcie" class="about-image">
@@ -275,16 +287,16 @@
         <div id="clips" class="section">
             <div class="card">
                 <h2>CLIPS</h2>
-                <p>Nasze highlighty i najlepsze momenty:</p>
-                <a href="https://www.youtube.com/@brixxk12" target="_blank">ZOBACZ KANAŁ</a>
+                <p>Najlepsze zagrania i montaże:</p>
+                <a href="https://www.youtube.com/@brixxk12" target="_blank">YOUTUBE KANAŁ</a>
             </div>
         </div>
 
         <div id="setup" class="section">
             <div class="card" style="max-width: 600px; margin: 0 auto;">
-                <h2>SETUP</h2>
+                <h2>HARDWARE</h2>
                 <div class="setup-item"><span>Mysz</span> <span>Attack Shark R1</span></div>
-                <div class="setup-item"><span>Klawisze</span> <span>SMX Kishu</span></div>
+                <div class="setup-item"><span>Klawiatura</span> <span>SMX Kishu</span></div>
                 <div class="setup-item"><span>Słuchawki</span> <span>Mad Dog GH705</span></div>
             </div>
         </div>
