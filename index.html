@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BR SHOOTERS | Bright White</title>
+    <title>BR SHOOTERS | 1mmortal</title>
 
     <style>
+        /* Styl pozostaje ten sam co w poprzedniej "jaśniejszej" wersji */
         body {
             margin: 0;
             font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #1a1a1a; /* Jaśniejsze tło główne */
+            background: #1a1a1a;
             color: #ffffff;
             overflow: hidden;
             user-select: none;
         }
 
-        /* 🔥 INTRO */
         #intro {
             position: fixed;
             width: 100%;
@@ -33,8 +33,8 @@
         .intro-logo {
             width: 260px;
             height: 260px;
-            object-fit: cover; /* Zapewnia, że logo wypełni kwadrat */
-            border-radius: 20px; /* Kwadrat z lekko zaokrąglonymi rogami */
+            object-fit: cover;
+            border-radius: 20px;
             border: 2px solid rgba(255, 255, 255, 0.1);
             animation: white-glow 2.5s infinite alternate;
         }
@@ -44,7 +44,6 @@
             100% { transform: scale(1.03); box-shadow: 0 0 40px rgba(255, 255, 255, 0.5); }
         }
 
-        /* LOADING BAR */
         .bar {
             width: 250px;
             height: 4px;
@@ -78,7 +77,6 @@
             pointer-events: none;
         }
 
-        /* 🔥 MAIN STRUCTURE */
         #main {
             opacity: 0;
             display: flex;
@@ -88,10 +86,9 @@
 
         #main.show { opacity: 1; }
 
-        /* SIDEBAR */
         .sidebar {
             width: 260px;
-            background: #222222; /* Wyraźniejszy sidebar */
+            background: #222222;
             border-right: 1px solid #333;
             padding: 40px 20px;
             display: flex;
@@ -135,7 +132,7 @@
 
         .menu button.active {
             color: #000;
-            background: #ffffff; /* Odwrócenie kolorów dla aktywnego przycisku */
+            background: #ffffff;
             box-shadow: 0 4px 15px rgba(255,255,255,0.2);
         }
 
@@ -160,7 +157,6 @@
             font-weight: bold;
         }
 
-        /* CONTENT Area */
         .content-area {
             flex-grow: 1;
             padding: 80px;
@@ -231,14 +227,14 @@
 
 <body>
 
-<audio id="sound">
-    <source src="https://www.myinstants.com/media/sounds/game-start.mp3">
+<audio id="sound" loop>
+    <source src="https://files.catbox.moe/5z5886.mp3" type="audio/mpeg">
 </audio>
 
 <div id="intro" onclick="start()">
     <img src="BRRR.jpg" alt="Logo BR SHOOTERS" class="intro-logo">
     <div class="bar"><div class="bar-fill"></div></div>
-    <p>Kliknij, aby wejść</p>
+    <p>Kliknij, aby zainicjować system i zagrać nutę</p>
 </div>
 
 <div id="main">
@@ -259,15 +255,15 @@
         <div id="team" class="section active">
             <div class="card">
                 <h2>O NAS</h2>
-                <p>Ekipa <strong>BR SHOOTERS</strong> stawia na profesjonalizm i czystą grę. Witaj w naszym centrum operacyjnym.</p>
+                <p>Ekipa <strong>BR SHOOTERS</strong>. Nowa definicja precyzji. Słuchasz teraz: 1mmortal - Cash*.</p>
             </div>
         </div>
 
         <div id="clips" class="section">
             <div class="card">
                 <h2>CLIPS</h2>
-                <p>Nasze najlepsze zagrania znajdziesz na kanale:</p>
-                <a href="https://www.youtube.com/@brixxk12" target="_blank">ZOBACZ FILMY</a>
+                <p>Najlepsze akcje prosto z pola bitwy:</p>
+                <a href="https://www.youtube.com/@brixxk12" target="_blank">YOUTUBE</a>
             </div>
         </div>
 
@@ -287,7 +283,15 @@ function start() {
     const intro = document.getElementById("intro");
     const main = document.getElementById("main");
     const sound = document.getElementById("sound");
-    sound.play().catch(e => {});
+    
+    // Ustawienie głośności (opcjonalne, 0.5 to 50%)
+    sound.volume = 0.4;
+    
+    // Odtwarzanie Cash* - 1mmortal
+    sound.play().catch(e => {
+        console.log("Autoodtwarzanie zablokowane - wymagana interakcja");
+    });
+
     intro.classList.add("hide");
     setTimeout(() => { main.classList.add("show"); }, 400);
 }
