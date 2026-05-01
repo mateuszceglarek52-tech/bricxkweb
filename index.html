@@ -1,209 +1,154 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>bricxk_</title>
+<meta charset="UTF-8">
+<title>bricxk_ HUD</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: #eaeaea;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0a0a0a;
+  color: white;
+}
 
-    /* 🔥 INTRO */
-    #intro {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: black;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      cursor: pointer;
-    }
+/* 🔥 SIDEBAR */
+.sidebar {
+  position: fixed;
+  width: 220px;
+  height: 100vh;
+  background: #111;
+  border-right: 1px solid #222;
+  padding: 20px;
+}
 
-    .glitch {
-      font-size: 50px;
-      color: #00ff99;
-      letter-spacing: 3px;
-      animation: flicker 1.5s infinite;
-    }
+.nick {
+  color: #00ff99;
+  font-size: 22px;
+  margin-bottom: 30px;
+}
 
-    @keyframes flicker {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
+/* MENU BUTTONS */
+.menu button {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #888;
+  text-align: left;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
 
-    .bar {
-      width: 200px;
-      height: 4px;
-      background: #222;
-      margin-top: 20px;
-      overflow: hidden;
-      border-radius: 10px;
-    }
+.menu button:hover {
+  color: #00ff99;
+  transform: translateX(5px);
+}
 
-    .bar-fill {
-      width: 0%;
-      height: 100%;
-      background: #00ff99;
-      animation: load 2s forwards;
-    }
+/* ACTIVE */
+.menu button.active {
+  color: #00ff99;
+}
 
-    @keyframes load {
-      to { width: 100%; }
-    }
+/* RANK */
+.rank-box {
+  margin-top: 30px;
+  padding: 10px;
+  border: 1px solid #00ff99;
+}
 
-    #intro p {
-      color: #666;
-      margin-top: 15px;
-      font-size: 14px;
-    }
+.rank {
+  color: #00ff99;
+  font-size: 18px;
+}
 
-    .hide {
-      animation: fadeOut 1s forwards;
-    }
+/* MAIN */
+.main {
+  margin-left: 240px;
+  padding: 30px;
+}
 
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-      }
-    }
+/* CARD */
+.card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+}
 
-    /* MAIN */
-    header {
-      text-align: center;
-      padding: 50px 20px;
-      border-bottom: 1px solid #222;
-    }
+/* HIDE SYSTEM */
+.section {
+  display: none;
+}
 
-    h1 {
-      margin: 0;
-      font-size: 34px;
-    }
+.section.active {
+  display: block;
+}
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: #1a1a1a;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 14px;
-      transition: 0.2s;
-    }
-
-    .card:hover {
-      transform: scale(1.02);
-    }
-
-    h2 {
-      color: #00ff99;
-      margin-top: 0;
-    }
-
-    a {
-      color: #00ff99;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      color: #666;
-      border-top: 1px solid #222;
-    }
-  </style>
+h2 {
+  color: #00ff99;
+}
+</style>
 </head>
 
 <body>
 
-<!-- 🔊 SOUND -->
-<audio id="sound">
-  <source src="https://www.myinstants.com/media/sounds/game-start.mp3" type="audio/mpeg">
-</audio>
+<!-- SIDEBAR -->
+<div class="sidebar">
+  <div class="nick">bricxk_</div>
 
-<!-- 🔥 INTRO -->
-<div id="intro" onclick="start()">
-  <div class="glitch">bricxk_</div>
-  <div class="bar"><div class="bar-fill"></div></div>
-  <p>kliknij aby wejść</p>
+  <div class="menu">
+    <button onclick="show('team')" class="active">TEAM</button>
+    <button onclick="show('clips')">CLIPS</button>
+    <button onclick="show('setup')">SETUP</button>
+  </div>
+
+  <div class="rank-box">
+    <p style="margin:0;color:#888;">PREMIER</p>
+    <div class="rank">3000 ELO</div>
+  </div>
 </div>
 
 <!-- MAIN -->
-<header>
-  <h1>🎮 Mój Gaming Setup</h1>
-</header>
+<div class="main">
 
-<div class="container">
-
-  <div class="card">
-    <h2>💻 PC</h2>
-    <p>Ryzen 5 5500</p>
-    <p>GTX 760</p>
-    <p>16GB DDR4</p>
+  <div id="team" class="section active">
+    <div class="card">
+      <h2>TEAM</h2>
+      <p>Solo queue / brak teamu</p>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>🎯 CS2</h2>
-    <p>Premier: ~3000 ELO</p>
-    <p>DPI: 800</p>
-    <p>Styl: aim / agresja</p>
+  <div id="clips" class="section">
+    <div class="card">
+      <h2>CLIPS</h2>
+      <p>Tu możesz wrzucać swoje highlighty z CS2</p>
+    </div>
   </div>
 
-  <div class="card">
-    <h2>🖱️ Gear</h2>
-    <p>Attack Shark R1</p>
-    <p>SMX Kishu</p>
-    <p>Mad Dog GH705</p>
+  <div id="setup" class="section">
+    <div class="card">
+      <h2>SETUP</h2>
+      <p>Myszka: Attack Shark R1 (800 DPI)</p>
+      <p>Klawiatura: SMX Kishu</p>
+      <p>Słuchawki: Mad Dog GH705</p>
+    </div>
   </div>
-
-  <div class="card">
-  <h2>📱 Social</h2>
-
-  <p>
-    TikTok:
-    <a href="https://www.tiktok.com/@iloveskurka" target="_blank">
-      @iloveskurka
-    </a>
-  </p>
-
-  <p>
-    Steam:
-    <a href="https://steamcommunity.com/profiles/76561199619381679/" target="_blank">
-      Bricxk_
-    </a>
-  </p>
-</div>
 
 </div>
-
-<footer>
-  © 2026 bricxk_
-</footer>
 
 <script>
-function start() {
-  const intro = document.getElementById("intro");
-  const sound = document.getElementById("sound");
+function show(id) {
+  // sections
+  let sections = document.querySelectorAll('.section');
+  sections.forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
 
-  sound.play();
+  // buttons
+  let buttons = document.querySelectorAll('.menu button');
+  buttons.forEach(b => b.classList.remove('active'));
 
-  setTimeout(() => {
-    intro.classList.add("hide");
-  }, 1500);
+  event.target.classList.add('active');
 }
 </script>
 
