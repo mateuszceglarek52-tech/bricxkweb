@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
-  <title>Mój Gaming Setup</title>
+  <title>bricxk_</title>
 
   <style>
     body {
@@ -12,19 +12,77 @@
       color: #eaeaea;
     }
 
+    /* 🔥 INTRO */
+    #intro {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      cursor: pointer;
+    }
+
+    /* GLITCH TEXT */
+    .glitch {
+      font-size: 50px;
+      color: #00ff99;
+      position: relative;
+      letter-spacing: 3px;
+      animation: flicker 1.5s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    /* LOADING BAR */
+    .bar {
+      width: 200px;
+      height: 4px;
+      background: #222;
+      margin-top: 20px;
+      overflow: hidden;
+      border-radius: 10px;
+    }
+
+    .bar-fill {
+      width: 0%;
+      height: 100%;
+      background: #00ff99;
+      animation: load 2s forwards;
+    }
+
+    @keyframes load {
+      to { width: 100%; }
+    }
+
+    #intro p {
+      color: #666;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .hide {
+      animation: fadeOut 1s forwards;
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* MAIN */
     header {
       text-align: center;
       padding: 50px 20px;
       border-bottom: 1px solid #222;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 34px;
-    }
-
-    p {
-      color: #aaa;
     }
 
     .container {
@@ -46,7 +104,6 @@
     }
 
     h2 {
-      margin-top: 0;
       color: #00ff99;
     }
 
@@ -61,46 +118,68 @@
 
 <body>
 
+<!-- 🔊 SOUND -->
+<audio id="sound">
+  <source src="https://www.myinstants.com/media/sounds/game-start.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🔥 INTRO -->
+<div id="intro" onclick="start()">
+  <div class="glitch">bricxk_</div>
+  <div class="bar"><div class="bar-fill"></div></div>
+  <p>kliknij aby wejść</p>
+</div>
+
+<!-- MAIN -->
 <header>
   <h1>🎮 Mój Gaming Setup</h1>
-  <p>Minimalistyczne portfolio gracza</p>
 </header>
 
 <div class="container">
 
   <div class="card">
     <h2>💻 PC</h2>
-    <p>Procesor: Ryzen 5 5500</p>
-    <p>Karta graficzna: GTX 760</p>
-    <p>RAM: 16GB DDR4</p>
+    <p>Ryzen 5 5500</p>
+    <p>GTX 760</p>
+    <p>16GB DDR4</p>
   </div>
 
   <div class="card">
     <h2>🎯 CS2</h2>
     <p>Premier: ~3000 ELO</p>
     <p>DPI: 800</p>
-    <p>Styl gry: agresywny aim</p>
   </div>
 
   <div class="card">
     <h2>🖱️ Gear</h2>
-    <p>Myszka: Attack Shark R1</p>
-    <p>Klawiatura: SMX Kishu</p>
-    <p>Słuchawki: Mad Dog GH705</p>
-    <p>Monitor: 165Hz</p>
+    <p>Attack Shark R1</p>
+    <p>SMX Kishu</p>
+    <p>Mad Dog GH705</p>
   </div>
 
   <div class="card">
     <h2>📱 Social</h2>
-    <p>TikTok: <a href="#" style="color:#00ff99;">@twoj_tiktok</a></p>
-    <p>Steam: <a href="#" style="color:#00ff99;">Profil Steam</a></p>
+    <p>TikTok / Steam</p>
   </div>
 
 </div>
 
 <footer>
-  © 2026 Gaming Setup
+  © 2026 bricxk_
 </footer>
+
+<script>
+function start() {
+  const intro = document.getElementById("intro");
+  const sound = document.getElementById("sound");
+
+  sound.play();
+
+  setTimeout(() => {
+    intro.classList.add("hide");
+  }, 1500);
+}
+</script>
 
 </body>
 </html>
