@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BR SHOOTERS</title>
+    <title>BR SHOOTERS | White Neon</title>
 
     <style>
         body {
             margin: 0;
             font-family: 'Segoe UI', Roboto, Arial, sans-serif;
-            background: #0a0a0a;
-            color: white;
+            background: #050505; /* Jeszcze ciemniejsze tło dla lepszego kontrastu */
+            color: #ffffff;
             overflow: hidden;
             user-select: none;
         }
@@ -30,35 +30,33 @@
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        /* Styl dla Twojego LOGO */
         .intro-logo {
-            width: 250px; /* Możesz dostosować wielkość */
+            width: 280px;
             height: auto;
-            border-radius: 50%; /* Jeśli chcesz, żeby było okrągłe */
-            box-shadow: 0 0 20px rgba(0, 255, 153, 0.3);
-            animation: logo-glow 2s infinite alternate;
+            border-radius: 50%;
+            filter: grayscale(1); /* Logo w odcieniach szarości, by pasowało do bieli */
+            animation: white-glow 2.5s infinite alternate;
         }
 
-        @keyframes logo-glow {
-            0% { transform: scale(1); filter: drop-shadow(0 0 5px #00ff99); }
-            100% { transform: scale(1.05); filter: drop-shadow(0 0 25px #00ff99); }
+        @keyframes white-glow {
+            0% { transform: scale(1); filter: grayscale(1) drop-shadow(0 0 5px #ffffff); }
+            100% { transform: scale(1.03); filter: grayscale(0.5) drop-shadow(0 0 25px #ffffff); }
         }
 
         /* LOADING BAR */
         .bar {
-            width: 300px;
+            width: 250px;
             height: 2px;
-            background: #1a1a1a;
-            margin-top: 40px;
+            background: #111;
+            margin-top: 50px;
             overflow: hidden;
-            border-radius: 10px;
         }
 
         .bar-fill {
             width: 0%;
             height: 100%;
-            background: #00ff99;
-            box-shadow: 0 0 15px #00ff99;
+            background: #ffffff;
+            box-shadow: 0 0 15px #ffffff;
             animation: load 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
 
@@ -67,11 +65,11 @@
         }
 
         #intro p {
-            color: #444;
+            color: #333;
             margin-top: 15px;
-            font-size: 12px;
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 5px;
         }
 
         #intro.hide {
@@ -94,8 +92,8 @@
 
         /* SIDEBAR */
         .sidebar {
-            width: 250px;
-            background: #0f0f0f;
+            width: 260px;
+            background: #0a0a0a;
             border-right: 1px solid #1a1a1a;
             padding: 40px 20px;
             display: flex;
@@ -103,13 +101,14 @@
         }
 
         .team-name {
-            color: #00ff99;
-            font-size: 22px;
+            color: #ffffff;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 40px;
-            letter-spacing: 2px;
+            margin-bottom: 50px;
+            letter-spacing: 4px;
             text-align: center;
             text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
         }
 
         .menu {
@@ -120,60 +119,64 @@
             width: 100%;
             background: none;
             border: none;
-            color: #666;
+            color: #444;
             text-align: left;
-            padding: 15px 10px;
+            padding: 18px 15px;
             margin-bottom: 5px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.4s;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
         }
 
         .menu button:hover {
-            color: #00ff99;
-            background: rgba(0, 255, 153, 0.05);
-            transform: translateX(5px);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.03);
+            transform: translateX(8px);
         }
 
         .menu button.active {
-            color: #00ff99;
-            background: rgba(0, 255, 153, 0.1);
-            border-left: 3px solid #00ff99;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.07);
+            border-left: 2px solid #ffffff;
+            box-shadow: -10px 0 20px rgba(255,255,255,0.05);
         }
 
         .rank-box {
-            background: #111;
-            padding: 15px;
-            border-radius: 4px;
-            border: 1px solid #222;
+            background: #0d0d0d;
+            padding: 20px;
+            border: 1px solid #1a1a1a;
+            text-align: center;
         }
 
         .rank-label {
-            color: #555;
-            font-size: 10px;
-            margin-bottom: 5px;
+            color: #333;
+            font-size: 9px;
+            margin-bottom: 8px;
             text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .rank {
-            color: #00ff99;
+            color: #ffffff;
             font-size: 18px;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
+            text-shadow: 0 0 8px rgba(255,255,255,0.4);
         }
 
-        /* CONTENT */
+        /* CONTENT Area */
         .content-area {
             flex-grow: 1;
-            padding: 60px;
+            padding: 80px;
             overflow-y: auto;
+            background: radial-gradient(circle at top right, #111 0%, #050505 100%);
         }
 
         .section {
             display: none;
-            animation: fadeIn 0.8s ease forwards;
+            animation: fadeIn 1s ease forwards;
         }
 
         .section.active {
@@ -181,51 +184,59 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; filter: blur(10px); transform: translateY(20px); }
+            to { opacity: 1; filter: blur(0); transform: translateY(0); }
         }
 
         .card {
-            background: #161616;
+            background: rgba(15, 15, 15, 0.8);
             padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #222;
-            max-width: 650px;
+            border-radius: 4px;
+            border: 1px solid #1a1a1a;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
         }
 
         h2 {
-            color: #00ff99;
+            color: #ffffff;
             margin-top: 0;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 5px;
+            font-size: 24px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 15px;
         }
 
-        p { color: #888; line-height: 1.8; }
+        p { color: #666; line-height: 2; font-size: 14px; }
 
         .setup-item {
             display: flex;
             justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #222;
+            padding: 15px 0;
+            border-bottom: 1px solid #111;
+            font-size: 13px;
         }
 
-        .setup-item span:first-child { color: #555; font-weight: bold; }
+        .setup-item span:first-child { color: #333; text-transform: uppercase; }
+        .setup-item span:last-child { color: #aaa; }
 
         a {
             display: inline-block;
-            margin-top: 20px;
-            color: #00ff99;
+            margin-top: 30px;
+            color: #ffffff;
             text-decoration: none;
             font-weight: bold;
-            padding: 10px 25px;
-            border: 1px solid #00ff99;
-            border-radius: 4px;
-            transition: 0.3s;
+            padding: 12px 30px;
+            border: 1px solid #ffffff;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: 0.4s;
         }
 
         a:hover {
-            background: #00ff99;
-            color: black;
+            background: #ffffff;
+            color: #000;
+            box-shadow: 0 0 20px #ffffff;
         }
     </style>
 </head>
@@ -239,7 +250,7 @@
 <div id="intro" onclick="start()">
     <img src="BRRR.jpg" alt="Logo BR SHOOTERS" class="intro-logo">
     <div class="bar"><div class="bar-fill"></div></div>
-    <p>System Initialize...</p>
+    <p>Loading Interface</p>
 </div>
 
 <div id="main">
@@ -248,14 +259,14 @@
         <div class="team-name">BR SHOOTERS</div>
 
         <div class="menu">
-            <button onclick="show(this, 'team')" class="active">SQUAD</button>
-            <button onclick="show(this, 'clips')">MEDIA</button>
-            <button onclick="show(this, 'setup')">HARDWARE</button>
+            <button onclick="show(this, 'team')" class="active">O nas</button>
+            <button onclick="show(this, 'clips')">Nagrania</button>
+            <button onclick="show(this, 'setup')">Sprzęt</button>
         </div>
 
         <div class="rank-box">
-            <div class="rank-label">Premier Ranking</div>
-            <div class="rank">3000 ELO</div>
+            <div class="rank-label">Premier Elo</div>
+            <div class="rank">3000</div>
         </div>
     </div>
 
@@ -264,24 +275,24 @@
         <div id="team" class="section active">
             <div class="card">
                 <h2>O NAS</h2>
-                <p>Oficjalna strona ekipy <strong>BR SHOOTERS</strong>. Jesteśmy zespołem nastawionym na progres, komunikację i najwyższy poziom rozgrywki.</p>
+                <p>Kierujemy się precyzją i czystością formy. <strong>BR SHOOTERS</strong> to nie tylko zespół, to standard gry, do którego dążymy w każdym meczu.</p>
             </div>
         </div>
 
         <div id="clips" class="section">
             <div class="card">
-                <h2>CLIPS & HIGHLIGHTS</h2>
-                <p>Zobacz nasze najnowsze akcje na YouTube:</p>
-                <a href="https://www.youtube.com/@brixxk12" target="_blank">SPRAWDŹ KANAŁ</a>
+                <h2>MEDIA</h2>
+                <p>Nasze archiwa i najnowsze montaże są dostępne publicznie:</p>
+                <a href="https://www.youtube.com/@brixxk12" target="_blank">YOUTUBE CHANNEL</a>
             </div>
         </div>
 
         <div id="setup" class="section">
             <div class="card">
-                <h2>SPECYFIKACJA</h2>
-                <div class="setup-item"><span>Mysz:</span> <span>Attack Shark R1 (800 DPI)</span></div>
-                <div class="setup-item"><span>Klawiatura:</span> <span>SMX Kishu</span></div>
-                <div class="setup-item"><span>Słuchawki:</span> <span>Mad Dog GH705</span></div>
+                <h2>SPEC</h2>
+                <div class="setup-item"><span>Mouse</span> <span>Attack Shark R1</span></div>
+                <div class="setup-item"><span>Keys</span> <span>SMX Kishu</span></div>
+                <div class="setup-item"><span>Audio</span> <span>Mad Dog GH705</span></div>
             </div>
         </div>
 
@@ -295,7 +306,7 @@ function start() {
     const main = document.getElementById("main");
     const sound = document.getElementById("sound");
 
-    sound.play().catch(e => console.log("Sound muted by browser"));
+    sound.play().catch(e => {});
 
     intro.classList.add("hide");
     
