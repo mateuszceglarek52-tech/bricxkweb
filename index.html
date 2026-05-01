@@ -1,266 +1,332 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<title>bricxk_ cinematic v4</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bricxk_ cinematic v4</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0a0a0a;
-  color: white;
-  overflow: hidden;
-}
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow: hidden;
+            user-select: none;
+        }
 
-/* 🔥 INTRO */
-#intro {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  cursor: pointer;
-  transition: opacity 1s ease, transform 1s ease;
-}
+        /* 🔥 INTRO */
+        #intro {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            cursor: pointer;
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
 
-#intro h1 {
-  color: #00ff99;
-  font-size: 60px;
-  letter-spacing: 5px;
-  animation: glow 1.5s infinite;
-}
+        #intro h1 {
+            color: #00ff99;
+            font-size: 70px;
+            letter-spacing: 10px;
+            margin: 0;
+            text-transform: uppercase;
+            animation: glow 2s infinite alternate;
+        }
 
-@keyframes glow {
-  0%,100% { text-shadow: 0 0 5px #00ff99; }
-  50% { text-shadow: 0 0 30px #00ff99; }
-}
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #00ff99, 0 0 10px #00ff99; }
+            100% { text-shadow: 0 0 20px #00ff99, 0 0 40px #00ff99; }
+        }
 
-/* LOADING BAR */
-.bar {
-  width: 250px;
-  height: 4px;
-  background: #222;
-  margin-top: 20px;
-  overflow: hidden;
-  border-radius: 10px;
-}
+        /* LOADING BAR */
+        .bar {
+            width: 300px;
+            height: 2px;
+            background: #1a1a1a;
+            margin-top: 30px;
+            overflow: hidden;
+            border-radius: 10px;
+        }
 
-.bar-fill {
-  width: 0%;
-  height: 100%;
-  background: #00ff99;
-  animation: load 2.5s forwards;
-}
+        .bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #00ff99;
+            box-shadow: 0 0 15px #00ff99;
+            animation: load 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
 
-@keyframes load {
-  to { width: 100%; }
-}
+        @keyframes load {
+            to { width: 100%; }
+        }
 
-#intro p {
-  color: #666;
-  margin-top: 10px;
-  font-size: 14px;
-}
+        #intro p {
+            color: #444;
+            margin-top: 15px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-/* INTRO EXIT */
-#intro.hide {
-  opacity: 0;
-  transform: scale(1.1);
-  pointer-events: none;
-}
+        #intro.hide {
+            opacity: 0;
+            transform: scale(1.1);
+            pointer-events: none;
+        }
 
-/* 🔥 MAIN */
-#main {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 1s ease;
-}
+        /* 🔥 MAIN STRUCTURE */
+        #main {
+            opacity: 0;
+            display: flex;
+            height: 100vh;
+            transition: 1.5s ease;
+        }
 
-#main.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+        #main.show {
+            opacity: 1;
+        }
 
-/* SIDEBAR */
-.sidebar {
-  position: fixed;
-  width: 220px;
-  height: 100vh;
-  background: #111;
-  border-right: 1px solid #222;
-  padding: 20px;
-}
+        /* SIDEBAR */
+        .sidebar {
+            width: 250px;
+            background: #0f0f0f;
+            border-right: 1px solid #1a1a1a;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+        }
 
-.nick {
-  color: #00ff99;
-  font-size: 22px;
-  margin-bottom: 30px;
-  letter-spacing: 2px;
-}
+        .nick {
+            color: #00ff99;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 40px;
+            letter-spacing: 3px;
+            text-align: center;
+        }
 
-.menu button {
-  width: 100%;
-  background: none;
-  border: none;
-  color: #888;
-  text-align: left;
-  padding: 10px 0;
-  cursor: pointer;
-  transition: 0.2s;
-}
+        .menu {
+            flex-grow: 1;
+        }
 
-.menu button:hover {
-  color: #00ff99;
-  transform: translateX(5px);
-}
+        .menu button {
+            width: 100%;
+            background: none;
+            border: none;
+            color: #666;
+            text-align: left;
+            padding: 15px 10px;
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 4px;
+        }
 
-.menu button.active {
-  color: #00ff99;
-}
+        .menu button:hover {
+            color: #00ff99;
+            background: rgba(0, 255, 153, 0.05);
+            transform: translateX(5px);
+        }
 
-.rank-box {
-  margin-top: 30px;
-  padding: 10px;
-  border: 1px solid #00ff99;
-}
+        .menu button.active {
+            color: #00ff99;
+            background: rgba(0, 255, 153, 0.1);
+            border-left: 3px solid #00ff99;
+        }
 
-.rank {
-  color: #00ff99;
-  font-size: 18px;
-}
+        .rank-box {
+            background: #151515;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #222;
+        }
 
-/* MAIN AREA */
-.main {
-  margin-left: 240px;
-  padding: 30px;
-}
+        .rank-label {
+            color: #555;
+            font-size: 11px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
 
-.card {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  transition: 0.2s;
-}
+        .rank {
+            color: #00ff99;
+            font-size: 20px;
+            font-family: 'Courier New', Courier, monospace;
+        }
 
-.card:hover {
-  transform: scale(1.02);
-  border: 1px solid #00ff99;
-}
+        /* MAIN CONTENT AREA */
+        .content-area {
+            flex-grow: 1;
+            padding: 50px;
+            overflow-y: auto;
+        }
 
-h2 {
-  color: #00ff99;
-}
+        .section {
+            display: none;
+            animation: slideIn 0.6s ease forwards;
+        }
 
-.section {
-  display: none;
-}
+        .section.active {
+            display: block;
+        }
 
-.section.active {
-  display: block;
-}
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-a {
-  color: #00ff99;
-  text-decoration: none;
-}
-</style>
+        .card {
+            background: #161616;
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid #222;
+            max-width: 700px;
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: #00ff99;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            color: #00ff99;
+            margin-top: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+
+        p { color: #aaa; line-height: 1.6; }
+
+        .setup-list { list-style: none; padding: 0; }
+        .setup-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #222;
+            color: #ddd;
+        }
+        .setup-list li span { color: #00ff99; font-weight: bold; }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #00ff99;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #00ff99;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background: #00ff99;
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- 🔊 SOUND -->
 <audio id="sound">
-  <source src="https://www.myinstants.com/media/sounds/game-start.mp3">
+    <source src="https://www.myinstants.com/media/sounds/game-start.mp3">
 </audio>
 
-<!-- 🔥 INTRO -->
 <div id="intro" onclick="start()">
-  <h1>bricxk_</h1>
-  <div class="bar"><div class="bar-fill"></div></div>
-  <p>loading system...</p>
+    <h1>bricxk_</h1>
+    <div class="bar"><div class="bar-fill"></div></div>
+    <p>Kliknij, aby zainicjować system...</p>
 </div>
 
-<!-- 🔥 MAIN -->
 <div id="main">
 
-  <div class="sidebar">
-    <div class="nick">bricxk_</div>
+    <div class="sidebar">
+        <div class="nick">BRICXK_</div>
 
-    <div class="menu">
-      <button onclick="show('team')" class="active">TEAM</button>
-      <button onclick="show('clips')">CLIPS</button>
-      <button onclick="show('setup')">SETUP</button>
+        <div class="menu">
+            <button onclick="show(this, 'team')" class="active">TEAM</button>
+            <button onclick="show(this, 'clips')">CLIPS</button>
+            <button onclick="show(this, 'setup')">SETUP</button>
+        </div>
+
+        <div class="rank-box">
+            <div class="rank-label">Premier Rating</div>
+            <div class="rank">3000 ELO</div>
+        </div>
     </div>
 
-    <div class="rank-box">
-      <p style="margin:0;color:#888;">PREMIER</p>
-      <div class="rank">3000 ELO</div>
+    <div class="content-area">
+
+        <div id="team" class="section active">
+            <div class="card">
+                <h2>BR SHOOTERS</h2>
+                <p>Oficjalny skład i formacja. Skupienie, precyzja i dominacja na serwerze.</p>
+            </div>
+        </div>
+
+        <div id="clips" class="section">
+            <div class="card">
+                <h2>LATEST CLIPS</h2>
+                <p>Najlepsze akcje i montaże znajdziesz na moim kanale:</p>
+                <a href="https://www.youtube.com/@brixxk12" target="_blank">
+                    OTWÓRZ YOUTUBE
+                </a>
+            </div>
+        </div>
+
+        <div id="setup" class="section">
+            <div class="card">
+                <h2>HARDWARE</h2>
+                <ul class="setup-list">
+                    <li><span>Mouse:</span> Attack Shark R1 (800 DPI)</li>
+                    <li><span>Keyboard:</span> SMX Kishu</li>
+                    <li><span>Audio:</span> Mad Dog GH705</li>
+                </ul>
+            </div>
+        </div>
+
     </div>
-  </div>
-
-  <div class="main">
-
-    <div id="team" class="section active">
-      <div class="card">
-        <h2>BR SHOOTERS</h2>
-        <p>Official squad</p>
-      </div>
-    </div>
-
-    <div id="clips" class="section">
-      <div class="card">
-        <h2>CLIPS</h2>
-        <a href="https://www.youtube.com/@brixxk12" target="_blank">
-          youtube.com/@brixxk12
-        </a>
-      </div>
-    </div>
-
-    <div id="setup" class="section">
-      <div class="card">
-        <h2>SETUP</h2>
-        <p>Attack Shark R1 (800 DPI)</p>
-        <p>SMX Kishu</p>
-        <p>Mad Dog GH705</p>
-      </div>
-    </div>
-
-  </div>
 
 </div>
 
 <script>
-
 function start() {
-  const intro = document.getElementById("intro");
-  const main = document.getElementById("main");
-  const sound = document.getElementById("sound");
+    const intro = document.getElementById("intro");
+    const main = document.getElementById("main");
+    const sound = document.getElementById("sound");
 
-  sound.play();
+    // Próba odtworzenia dźwięku
+    sound.play().catch(e => console.log("Odtwarzanie zablokowane przez przeglądarkę"));
 
-  setTimeout(() => {
+    // Animacja wyjścia intro
     intro.classList.add("hide");
-    main.classList.add("show");
-  }, 2500);
+    
+    // Pokazanie głównej zawartości
+    setTimeout(() => {
+        main.classList.add("show");
+    }, 500);
 }
 
-function show(id) {
-  let sections = document.querySelectorAll('.section');
-  sections.forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+function show(btn, id) {
+    // Ukryj wszystkie sekcje
+    let sections = document.querySelectorAll('.section');
+    sections.forEach(s => s.classList.remove('active'));
+    
+    // Pokaż wybraną sekcję
+    document.getElementById(id).classList.add('active');
 
-  let buttons = document.querySelectorAll('.menu button');
-  buttons.forEach(b => b.classList.remove('active'));
-
-  event.target.classList.add('active');
+    // Zmień aktywny przycisk
+    let buttons = document.querySelectorAll('.menu button');
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
 }
-
 </script>
 
 </body>
