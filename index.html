@@ -87,7 +87,6 @@
 
         #main.show { opacity: 1; }
 
-        /* SIDEBAR */
         .sidebar {
             width: 260px;
             background: #222222;
@@ -144,10 +143,15 @@
             padding: 60px;
             overflow-y: auto;
             background: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
         }
 
         .section {
             display: none;
+            width: 100%;
+            max-width: 1000px; /* Szersza sekcja */
             animation: fadeIn 0.6s ease forwards;
         }
 
@@ -163,17 +167,31 @@
             padding: 40px;
             border-radius: 16px;
             border: 1px solid #333;
-            max-width: 650px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* UKŁAD POZIOMY DLA O NAS */
+        .about-layout {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image-container {
+            flex: 1;
         }
 
         .about-image {
             width: 100%;
             height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            border-radius: 12px;
             border: 1px solid #444;
             display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         h2 {
@@ -184,8 +202,9 @@
             font-size: 26px;
         }
 
-        p { color: #cccccc; line-height: 1.8; font-size: 15px; }
+        p { color: #cccccc; line-height: 1.8; font-size: 16px; }
 
+        /* Pozostałe sekcje */
         .setup-item {
             display: flex;
             justify-content: space-between;
@@ -210,6 +229,12 @@
         }
 
         a:hover { box-shadow: 0 5px 15px rgba(255,255,255,0.3); }
+
+        /* Responsywność - na telefonach zdjęcie wróci pod tekst */
+        @media (max-width: 850px) {
+            .about-layout { flex-direction: column; text-align: center; }
+            .content-area { padding: 20px; }
+        }
     </style>
 </head>
 
@@ -234,9 +259,16 @@
     <div class="content-area">
         <div id="team" class="section active">
             <div class="card">
-                <h2>O NAS</h2>
-                <img src="G4_2_PL.png" alt="O nas zdjęcie" class="about-image">
-                <p>Ekipa <strong>BR SHOOTERS</strong> to czysta precyzja i profesjonalizm. Razem tworzymy nową historię na serwerze.</p>
+                <div class="about-layout">
+                    <div class="about-text">
+                        <h2>O NAS</h2>
+                        <p>Ekipa <strong>BR SHOOTERS</strong> to czysta precyzja i profesjonalizm. Jesteśmy zespołem zgranym pod kątem taktycznym, gdzie każdy strzał ma znaczenie.</p>
+                        <p>Naszym celem jest stały progres i dominacja na serwerze. Razem tworzymy nową historię w świecie gamingu.</p>
+                    </div>
+                    <div class="about-image-container">
+                        <img src="G4_2_PL.png" alt="O nas zdjęcie" class="about-image">
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -249,7 +281,7 @@
         </div>
 
         <div id="setup" class="section">
-            <div class="card">
+            <div class="card" style="max-width: 600px; margin: 0 auto;">
                 <h2>SETUP</h2>
                 <div class="setup-item"><span>Mysz</span> <span>Attack Shark R1</span></div>
                 <div class="setup-item"><span>Klawisze</span> <span>SMX Kishu</span></div>
@@ -263,7 +295,6 @@
 function start() {
     const intro = document.getElementById("intro");
     const main = document.getElementById("main");
-    
     intro.classList.add("hide");
     setTimeout(() => { main.classList.add("show"); }, 400);
 }
