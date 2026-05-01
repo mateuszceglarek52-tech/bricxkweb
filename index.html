@@ -10,9 +10,10 @@ body {
   font-family: Arial;
   background: #0a0a0a;
   color: white;
+  overflow-x: hidden;
 }
 
-/* 🔥 SIDEBAR */
+/* SIDEBAR */
 .sidebar {
   position: fixed;
   width: 220px;
@@ -26,9 +27,10 @@ body {
   color: #00ff99;
   font-size: 22px;
   margin-bottom: 30px;
+  letter-spacing: 2px;
 }
 
-/* MENU BUTTONS */
+/* MENU */
 .menu button {
   width: 100%;
   background: none;
@@ -46,7 +48,6 @@ body {
   transform: translateX(5px);
 }
 
-/* ACTIVE */
 .menu button.active {
   color: #00ff99;
 }
@@ -74,9 +75,16 @@ body {
   background: #1a1a1a;
   padding: 20px;
   border-radius: 12px;
+  margin-bottom: 20px;
+  transition: 0.2s;
 }
 
-/* HIDE SYSTEM */
+.card:hover {
+  transform: scale(1.02);
+  border: 1px solid #00ff99;
+}
+
+/* SECTIONS */
 .section {
   display: none;
 }
@@ -87,6 +95,16 @@ body {
 
 h2 {
   color: #00ff99;
+}
+
+/* LINKS */
+a {
+  color: #00ff99;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 </style>
 </head>
@@ -112,20 +130,33 @@ h2 {
 <!-- MAIN -->
 <div class="main">
 
+  <!-- TEAM -->
   <div id="team" class="section active">
     <div class="card">
-      <h2>TEAM</h2>
-      <p>Solo queue / brak teamu</p>
+      <h2>BR SHOOTERS</h2>
+      <p>Nasza drużyna / squad</p>
     </div>
   </div>
 
+  <!-- CLIPS -->
   <div id="clips" class="section">
     <div class="card">
       <h2>CLIPS</h2>
-      <p>Tu możesz wrzucać swoje highlighty z CS2</p>
+      <p>📺 YouTube kanał:</p>
+
+      <p>
+        <a href="https://www.youtube.com/@brixxk12" target="_blank">
+          youtube.com/@brixxk12
+        </a>
+      </p>
+
+      <p style="color:#666; margin-top:10px;">
+        Kliknij aby zobaczyć wszystkie filmy
+      </p>
     </div>
   </div>
 
+  <!-- SETUP -->
   <div id="setup" class="section">
     <div class="card">
       <h2>SETUP</h2>
@@ -139,12 +170,10 @@ h2 {
 
 <script>
 function show(id) {
-  // sections
   let sections = document.querySelectorAll('.section');
   sections.forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 
-  // buttons
   let buttons = document.querySelectorAll('.menu button');
   buttons.forEach(b => b.classList.remove('active'));
 
